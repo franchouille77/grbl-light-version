@@ -1,3 +1,17 @@
+***
+# This is a lighter version of GRBL 1.1
+***
+I delete the libraries that are needed by the spindle and coolant, and I comment all the related code in the other files so you can not use them with this light version, but the size of the sketch in the arduino IDE is around 1800 bytes less than the original version.
+
+This version is usefull if you try to upload the grbl original version into an arduino nano clone (or other boards) but it's not possible because Arduino IDE error says ```Sketch too big.``` 
+I encounter the problem because I had enable the COREXY mode of GRBL to use with my arduino nano clone, but the sketch originaly uses 102% of program storage space thats why I got the ```sketch too big``` error, but with this light version the sketch now use 95% of program storage space so the upload works fine with only this warning ```Low memory available, stability problems may occur.```. For me it works just fine, maybe it can help you so here it is.
+
+I don't modify the config file to enable COREXY and I don't modify the cpu map file to adjust the pinout to works with the arduino nano and the GRBL v4 board (the GRBL v4 board is a clone of a CNC shield but it comes with a lot of conception problems, be sure to google check this first if you have it).
+So it's just a light version with default configuration.
+
+The installation is the same than the original version of GRBL so you can find the original GRBL readme under this line.
+_______________________________________________________________________________________________________________________________________________________________________
+
 ![GitHub Logo](https://github.com/gnea/gnea-Media/blob/master/Grbl%20Logo/Grbl%20Logo%20250px.png?raw=true)
 
 ***
