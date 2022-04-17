@@ -9,7 +9,7 @@ I encounter the problem because I had enable the COREXY mode of GRBL to use with
 I don't modify the config file to enable COREXY and I don't modify the cpu map file to adjust the pinout to works with the arduino nano and the GRBL v4 board (the GRBL v4 board is a clone of a CNC shield but it comes with a lot of conception problems, be sure to google check this first if you have it).
 So it's just a light version with default configuration.
 
-The installation is the same than the original version of GRBL so you can find the original GRBL readme under this line and [here](https://github.com/gnea/grbl) is the original project.
+The installation is the same than the original version of GRBL so you can find the original GRBL readme under this line and [here](https://github.com/gnea/grbl) is the original project for more informations.
 _______________________________________________________________________________________________________________________________________________________________________
 
 ![GitHub Logo](https://github.com/gnea/gnea-Media/blob/master/Grbl%20Logo/Grbl%20Logo%20250px.png?raw=true)
