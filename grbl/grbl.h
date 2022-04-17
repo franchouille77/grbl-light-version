@@ -46,7 +46,7 @@
 #include "defaults.h"
 #include "cpu_map.h"
 #include "planner.h"
-#include "coolant_control.h"
+//#include "coolant_control.h"
 #include "eeprom.h"
 #include "gcode.h"
 #include "limits.h"
@@ -57,7 +57,7 @@
 #include "protocol.h"
 #include "report.h"
 #include "serial.h"
-#include "spindle_control.h"
+//#include "spindle_control.h"
 #include "stepper.h"
 #include "jog.h"
 
@@ -68,7 +68,7 @@
   #error "Required HOMING_CYCLE_0 not defined."
 #endif
 
-#if defined(USE_SPINDLE_DIR_AS_ENABLE_PIN) && !defined(VARIABLE_SPINDLE)
+/*#if defined(USE_SPINDLE_DIR_AS_ENABLE_PIN) && !defined(VARIABLE_SPINDLE)
   #error "USE_SPINDLE_DIR_AS_ENABLE_PIN may only be used with VARIABLE_SPINDLE enabled"
 #endif
 
@@ -78,7 +78,7 @@
 
 #if !defined(USE_SPINDLE_DIR_AS_ENABLE_PIN) && defined(SPINDLE_ENABLE_OFF_WITH_ZERO_SPEED)
   #error "SPINDLE_ENABLE_OFF_WITH_ZERO_SPEED may only be used with USE_SPINDLE_DIR_AS_ENABLE_PIN enabled"
-#endif
+#endif*/
 
 #if defined(PARKING_ENABLE)
   #if defined(HOMING_FORCE_SET_ORIGIN)
@@ -92,11 +92,11 @@
   #endif
 #endif
 
-#if defined(SPINDLE_PWM_MIN_VALUE)
+/*#if defined(SPINDLE_PWM_MIN_VALUE)
   #if !(SPINDLE_PWM_MIN_VALUE > 0)
     #error "SPINDLE_PWM_MIN_VALUE must be greater than zero."
   #endif
-#endif
+#endif*/
 
 #if (REPORT_WCO_REFRESH_BUSY_COUNT < REPORT_WCO_REFRESH_IDLE_COUNT)
   #error "WCO busy refresh is less than idle refresh."
@@ -127,9 +127,9 @@
   #if defined(COREXY)
     #error "CORE XY not supported with dual axis feature."
   #endif
-  #if defined(USE_SPINDLE_DIR_AS_ENABLE_PIN)
+  /*#if defined(USE_SPINDLE_DIR_AS_ENABLE_PIN)
     #error "USE_SPINDLE_DIR_AS_ENABLE_PIN not supported with dual axis feature."
-  #endif
+  #endif*/
   #if defined(ENABLE_M7)
     #error "ENABLE_M7 not supported with dual axis feature."
   #endif

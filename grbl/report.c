@@ -157,8 +157,8 @@ void report_feedback_message(uint8_t message_code)
       printPgmString(PSTR("Pgm End")); break;
     case MESSAGE_RESTORE_DEFAULTS:
       printPgmString(PSTR("Restoring defaults")); break;
-    case MESSAGE_SPINDLE_RESTORE:
-      printPgmString(PSTR("Restoring spindle")); break;
+    /*case MESSAGE_SPINDLE_RESTORE:
+      printPgmString(PSTR("Restoring spindle")); break;*/
     case MESSAGE_SLEEP_MODE:
       printPgmString(PSTR("Sleeping")); break;
   }
@@ -203,11 +203,11 @@ void report_grbl_settings() {
   report_util_float_setting(27,settings.homing_pulloff,N_DECIMAL_SETTINGVALUE);
   report_util_float_setting(30,settings.rpm_max,N_DECIMAL_RPMVALUE);
   report_util_float_setting(31,settings.rpm_min,N_DECIMAL_RPMVALUE);
-  #ifdef VARIABLE_SPINDLE
+  /*#ifdef VARIABLE_SPINDLE
     report_util_uint8_setting(32,bit_istrue(settings.flags,BITFLAG_LASER_MODE));
   #else
     report_util_uint8_setting(32,0);
-  #endif
+  #endif*/
   // Print axis settings
   uint8_t idx, set_idx;
   uint8_t val = AXIS_SETTINGS_START_VAL;
@@ -310,13 +310,13 @@ void report_gcode_modes()
   }
 
   report_util_gcode_modes_M();
-  switch (gc_state.modal.spindle) {
+  /*switch (gc_state.modal.spindle) {
     case SPINDLE_ENABLE_CW : serial_write('3'); break;
     case SPINDLE_ENABLE_CCW : serial_write('4'); break;
     case SPINDLE_DISABLE : serial_write('5'); break;
-  }
+  }*/
 
-  #ifdef ENABLE_M7
+  /*#ifdef ENABLE_M7
     if (gc_state.modal.coolant) { // Note: Multiple coolant states may be active at the same time.
       if (gc_state.modal.coolant & PL_COND_FLAG_COOLANT_MIST) { report_util_gcode_modes_M(); serial_write('7'); }
       if (gc_state.modal.coolant & PL_COND_FLAG_COOLANT_FLOOD) { report_util_gcode_modes_M(); serial_write('8'); }
@@ -325,7 +325,7 @@ void report_gcode_modes()
     report_util_gcode_modes_M();
     if (gc_state.modal.coolant) { serial_write('8'); }
     else { serial_write('9'); }
-  #endif
+  #endif*/
 
   #ifdef ENABLE_PARKING_OVERRIDE_CONTROL
     if (sys.override_ctrl == OVERRIDE_PARKING_MOTION) { 
@@ -340,10 +340,10 @@ void report_gcode_modes()
   printPgmString(PSTR(" F"));
   printFloat_RateValue(gc_state.feed_rate);
 
-  #ifdef VARIABLE_SPINDLE
+  /*#ifdef VARIABLE_SPINDLE
     printPgmString(PSTR(" S"));
     printFloat(gc_state.spindle_speed,N_DECIMAL_RPMVALUE);
-  #endif
+  #endif*/
 
   report_util_feedback_line_feed();
 }
@@ -373,9 +373,9 @@ void report_build_info(char *line)
   printString(line);
   report_util_feedback_line_feed();
   printPgmString(PSTR("[OPT:")); // Generate compile-time build option list
-  #ifdef VARIABLE_SPINDLE
+  /*#ifdef VARIABLE_SPINDLE
     serial_write('V');
-  #endif
+  #endif*/
   #ifdef USE_LINE_NUMBERS
     serial_write('N');
   #endif
@@ -400,12 +400,12 @@ void report_build_info(char *line)
   #ifdef ALLOW_FEED_OVERRIDE_DURING_PROBE_CYCLES
     serial_write('A');
   #endif
-  #ifdef USE_SPINDLE_DIR_AS_ENABLE_PIN
+  /*#ifdef USE_SPINDLE_DIR_AS_ENABLE_PIN
     serial_write('D');
   #endif
   #ifdef SPINDLE_ENABLE_OFF_WITH_ZERO_SPEED
     serial_write('0');
-  #endif
+  #endif*/
   #ifdef ENABLE_SOFTWARE_DEBOUNCE
     serial_write('S');
   #endif
@@ -552,7 +552,7 @@ void report_realtime_status()
   #endif
 
   // Report realtime feed speed
-  #ifdef REPORT_FIELD_CURRENT_FEED_SPEED
+  /*#ifdef REPORT_FIELD_CURRENT_FEED_SPEED
     #ifdef VARIABLE_SPINDLE
       printPgmString(PSTR("|FS:"));
       printFloat_RateValue(st_get_realtime_rate());
@@ -562,7 +562,7 @@ void report_realtime_status()
       printPgmString(PSTR("|F:"));
       printFloat_RateValue(st_get_realtime_rate());
     #endif      
-  #endif
+  #endif*/
 
   #ifdef REPORT_FIELD_PIN_STATE
     uint8_t lim_pin_state = limits_get_state();
@@ -622,9 +622,9 @@ void report_realtime_status()
       serial_write(',');
       print_uint8_base10(sys.r_override);
       serial_write(',');
-      print_uint8_base10(sys.spindle_speed_ovr);
+      //print_uint8_base10(sys.spindle_speed_ovr);
 
-      uint8_t sp_state = spindle_get_state();
+      /*uint8_t sp_state = spindle_get_state();
       uint8_t cl_state = coolant_get_state();
       if (sp_state || cl_state) {
         printPgmString(PSTR("|A:"));
@@ -645,7 +645,7 @@ void report_realtime_status()
         #ifdef ENABLE_M7
           if (cl_state & COOLANT_STATE_MIST) { serial_write('M'); }
         #endif
-      }  
+      }*/  
     }
   #endif
 

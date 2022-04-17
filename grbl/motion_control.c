@@ -69,9 +69,9 @@ void mc_line(float *target, plan_line_data_t *pl_data)
     if (bit_istrue(settings.flags,BITFLAG_LASER_MODE)) {
       // Correctly set spindle state, if there is a coincident position passed. Forces a buffer
       // sync while in M3 laser mode only.
-      if (pl_data->condition & PL_COND_FLAG_SPINDLE_CW) {
+      /*if (pl_data->condition & PL_COND_FLAG_SPINDLE_CW) {
         spindle_sync(PL_COND_FLAG_SPINDLE_CW, pl_data->spindle_speed);
-      }
+      }*/
     }
   }
 }
@@ -370,8 +370,8 @@ void mc_reset()
     system_set_exec_state_flag(EXEC_RESET);
 
     // Kill spindle and coolant.
-    spindle_stop();
-    coolant_stop();
+    //spindle_stop();
+    //coolant_stop();
 
     // Kill steppers only if in any motion state, i.e. cycle, actively holding, or homing.
     // NOTE: If steppers are kept enabled via the step idle delay setting, this also keeps
