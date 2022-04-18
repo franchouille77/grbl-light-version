@@ -1,5 +1,5 @@
 ***
-# This is a lighter version of GRBL 1.1
+# This is a light version of GRBL 1.1
 ***
 I delete the libraries that are needed by the spindle and coolant, and I comment all the related code in the other files so you can not use them with this light version, but the size of the sketch in the arduino IDE is around 1800 bytes less than the original version.
 
